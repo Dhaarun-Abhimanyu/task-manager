@@ -11,14 +11,15 @@ const DeleteTask = () => {
         const task = {_name}
         console.log(task._name)
 
-        const response = await fetch(`/api/tasks/delete?name=${encodeURIComponent(_name)}`, {
+        const response = await fetch('/api/tasks/delete/'+task._name, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
+            body: JSON.stringify(task)
         });
 
-        const json = await response.json()
+        const json = await response.json();
         if(!response.ok)
                 setError(json.error)
         else{

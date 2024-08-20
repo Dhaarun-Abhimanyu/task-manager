@@ -70,7 +70,8 @@ const updateTask = async(req,res) => {
 
 const deleteTask = async(req,res) => {
     try{
-        const task = await taskModel.findOneAndDelete({_id: req.params.id})
+        const {name} = req.params
+        const task = await taskModel.findOneAndDelete({name})
 
         if(!task)
             return res.status(404).json({message: 'Task not found'})
